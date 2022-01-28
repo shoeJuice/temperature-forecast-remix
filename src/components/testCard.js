@@ -8,6 +8,9 @@ const testCard = (props) => {
         textAlign='center'
         borderBottom='1px solid white'
         >
+            <Text fontSize='20px' >
+                {`${props.day}`}
+            </Text>
             <AdaptiveIcon weather={props.weather} marginBottom={-20} />
             <Text fontSize='20px' marginBottom={-20}>
                 {`${props.weather}`}
