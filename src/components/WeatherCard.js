@@ -1,12 +1,12 @@
 import React from 'react';
 import {Box, Text, Icon} from '@chakra-ui/react'
-import {BsSun, BsMoonFill, BsCloudSnow, BsClouds} from 'react-icons/bs'
+import {BsSun, BsMoonFill, BsCloudSnow, BsClouds, BsCloudRain} from 'react-icons/bs'
 
 const AdaptiveIcon = ( props ) => {
    
+    const defBoxSize = 50
     
-    
-    return (String(props.weather).includes("Snow")) ? (<Icon as={BsCloudSnow} boxSize={35} marginBottom={props.marginBottom} />) : ((String(props.weather).includes("Clouds") ? (<Icon as={BsClouds} boxSize={35} marginBottom={props.marginBottom} />) : <></>))
+    return (String(props.weather).includes("Snow")) ? (<Icon as={BsCloudSnow} boxSize={defBoxSize} marginBottom={props.marginBottom} />) : ((String(props.weather).includes("Clouds") ? (<Icon as={BsClouds} boxSize={defBoxSize} marginBottom={props.marginBottom} />) : (String(props.weather).includes("Rain") ? (<Icon as={BsCloudRain} boxSize={defBoxSize} marginBottom={props.marginBottom} />) : <></>)       ))
 
 }
 
@@ -23,7 +23,7 @@ const WeatherCard = () => {
     const getTemp = () => {
          fetch('https://pro.openweathermap.org/data/2.5/forecast?lat=41.141&lon=-73.264&exclude=minutely,hourly&appid=69216bc1e255a60480a846fcb5004876&units=imperial')
         .then(response => response.json())
-        .then(response => setVariables(response.list[0].main.temp, response.list[0].weather[0].main))
+        .then(response => setVariables(parseInt(response.list[0].main.temp), response.list[0].weather[0].main))
         .then(console.log(temperature))
         .then(setIsLoaded(true))
     }
