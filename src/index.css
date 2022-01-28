@@ -1,3 +1,14 @@
+@keyframes blurIn {
+  0% {filter: blur(16px);}
+  25% {filter: blur(12px);}
+  50% {filter: blur(8px);}
+  75% {filter: blur(4px);}
+  90%{filter: blur(2px);}
+  100% {filter: blur(0px);}
+}
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +16,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  background-repeat: no-repeat;
+  background-position: center;
+  
+  
+  color: white;
+}
+
+.flex{
+  opacity: 0;
 }
 
 code {

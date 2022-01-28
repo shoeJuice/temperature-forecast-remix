@@ -1,0 +1,18 @@
+@keyframes blurIn {
+    0% {filter: blur(16px);}
+    25% {filter: blur(12px);}
+    50% {filter: blur(8px);}
+    75% {filter: blur(4px);}
+    90%{filter: blur(2px);}
+    100% {filter: blur(0px);}
+  }
+
+.backgroundModule{
+    background: url(https://source.unsplash.com/random/2400x1801/?nature,sunny);
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    animation-name: blurIn;
+    animation-duration: 7.6s;
+    
+}
