@@ -8,7 +8,7 @@ function DisplayContainer(props) {
   <Flex
     justifyContent='space-between'
     bgColor='rgba(160, 174, 192, .15)'
-    width='600px'
+    width='650px'
     height='800px'
     justifyContent='center'
     alignItems='center'
@@ -16,6 +16,7 @@ function DisplayContainer(props) {
     backdropFilter={'auto'}
     backdropBlur='16px'
     flexDirection='column'
+    padding={30}
   >
       <GreetingCard />
       <WeatherCard/>
