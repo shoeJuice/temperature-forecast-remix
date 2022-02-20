@@ -152,8 +152,9 @@ const WeatherCardArray = (props) => {
     }
 
    const numberToDay = (dtSeconds) => {
+        let milliseconds = dtSeconds * 1000
         let date = unixTimeToHumanReadable(dtSeconds)
-        let dateObject = new Date(date)
+        let dateObject = new Date(milliseconds)
         
         let dayOfWeek = ''
         switch(dateObject.getDay()){
