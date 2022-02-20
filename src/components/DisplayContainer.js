@@ -18,7 +18,7 @@ function DisplayContainer(props) {
         backdrop-filter: blur(16px);}`
   
   const nameRemembered = localStorage.getItem('userName') 
-  const [name, setName] = React.useState(nameRemembered ? nameRemembered : 'null')
+  const [name, setName] = React.useState(nameRemembered ? nameRemembered : '')
   const [mQuery] = useMediaQuery('(max-width: 412px)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
