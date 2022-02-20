@@ -216,6 +216,7 @@ const WeatherCardArray = (props) => {
             divider={(isPhoneDisplay || isSurfaceDuo) ? <StackDivider borderColor='white' /> : <></>}
             
             
+            
             borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             borderBottom={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             

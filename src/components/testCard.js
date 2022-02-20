@@ -24,7 +24,7 @@ const TestCard = (props) => {
         justifyContent='space-between'
         flexDirection={['row', 'row', 'column']}
         alignItems='center'
-        
+        paddingX='1.8ex'
         borderTop={['none', 'none', 'none', 'none']}
         borderBottom={['none', 'none', 'none', 'none']}
         >
@@ -34,13 +34,14 @@ const TestCard = (props) => {
                 alignContent='center'
                 width='6ex'
                 marginX='10px'
+                
             >
                 <Text fontSize={['2.3ex']} fontWeight='medium'>
                     {`${props.day}`}
                 </Text>
                 
                 <AdaptiveIcon boxSize={[6, 8, 9, 10]} weather={props.weather}  />
-                <Text display={isSurfaceDuo? 'none' : {base:'block', sm:'block', md:'none', lg:'none'}} fontSize={['1.2ex']} fontWeight='normal' padding={0} >
+                <Text display={isSurfaceDuo? 'none' : {base:'none', sm:'block', md:'none', lg:'none'}} fontSize={['1.2ex']} fontWeight='normal' padding={0} >
                     {`${props.weather}`}
                 </Text>
             </Box>

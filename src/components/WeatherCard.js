@@ -57,6 +57,7 @@ const WeatherCard = (props) => {
                 alignItems='center' 
                 textAlign='center'
                 paddingX={15}
+                paddingBottom='1ex'
             >
                 <AdaptiveIcon boxSize={10} weather={props.weatherDesc}  />
                 <Text fontSize={['16px', '18px', '40px', '48px']} >
