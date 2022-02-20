@@ -25,7 +25,7 @@ const TestCard = (props) => {
         flexDirection={['row', 'row', 'column']}
         alignItems='center'
         paddingX='2ex'
-        paddingY='1ex'
+        paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
         borderBottom={['none', 'none', 'none', 'none']}
         >
