@@ -1,5 +1,5 @@
 import React from 'react';
-import {Flex, Box, HStack} from '@chakra-ui/react'
+import {Flex, Box, HStack, Stack, StackDivider, useMediaQuery, Text} from '@chakra-ui/react'
 import TestCard from './testCard'
     //How to set an array of weathercards
     //Initialize a state variable that holds an array of objects
@@ -8,18 +8,23 @@ import TestCard from './testCard'
     //We can initialize the variables, by setting both to placeholder values
     //On an api call, use a map function to populate this array
 
-const ArrayTesterComponent = (props) => {
-    return <h1>{props.testValue}</h1>
-}
-
 
 const WeatherCardArray = (props) => {
 
     const [temperature, setTemperature] = React.useState();
     const [weather, setWeather] = React.useState();
-    const [fList, setfList] = React.useState([]);
-    const [isLoaded, setIsLoaded] = React.useState(false);
+    const [fList, setfList] = React.useState([
+        {"temp": {"day": 'undefined',
+                "min": 'undefined'},
+        "weather": [{"main": 'undefined'}],
+        "dt": null
+    }
 
+]);
+    const [loading, setLoading] = React.useState(true);
+    const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
+    const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
+    
    const setVariables = (temp, weather) => {
        setTemperature(temp)
        setWeather(weather)
@@ -149,7 +154,7 @@ const WeatherCardArray = (props) => {
    const numberToDay = (dtSeconds) => {
         let date = unixTimeToHumanReadable(dtSeconds)
         let dateObject = new Date(date)
-        console.log(date)
+        
         let dayOfWeek = ''
         switch(dateObject.getDay()){
             case 0:
@@ -174,44 +179,52 @@ const WeatherCardArray = (props) => {
                 dayOfWeek = 'Saturday'
                 break
         }
-        console.log(dayOfWeek)
+        
         return dayOfWeek.substring(0, 3)
    }
 
-   const setArray = (arr) => {
-       let tempArray = []
-       for(let i = 1; i < 7; i++){
-        tempArray.push({temp: parseInt(arr[i].temp['day']), weather: arr[i].weather[0]['main'], day: numberToDay(arr[i]['dt'])} )
-        
-        }
-       setfList(tempArray)
-   }
+   
     const getTemp = () => {
          fetch('https://pro.openweathermap.org/data/2.5/onecall?lat=41.141&lon=-73.264&exclude=minutely,hourly&appid=69216bc1e255a60480a846fcb5004876&units=imperial')
         .then(response => response.json())
         .then(response => {
-            setArray(response.daily)
+            
         })
         .then(console.log("hi", temperature))
-        .then(setIsLoaded(true))
+        .then(setLoading(true))
         
     }
+
+    const initializeList = () => {
+        setfList(props.sourceArray)
+        setLoading(false)
+    }
+
     React.useEffect(() => {
-        getTemp()
-        console.log(fList)
-    }, [])
+        //getTemp()
+        setfList([])
+        initializeList()
+        console.log("flist is:", fList)
+    }, [props.sourceArray])
 
         
         
 
-        return (<HStack
-            marginTop={30}
-            spacing={45}
+        return (props.sourceArray) ? (<Stack
+            
+            textAlign='center'
+            divider={(isPhoneDisplay || isSurfaceDuo) ? <StackDivider borderColor='white' /> : <></>}
+            
+            
+            borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
+            borderBottom={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
+            
+            direction={{base: 'column', sm:'column', md:'row'}}
         >
-           {fList.map((id, key) => (<div id={key}>
-                <TestCard temperature={id['temp']} weather={id['weather']} day={id['day']} />
-           </div>))}
-        </HStack>);
+            { (Array.isArray(fList)) ? fList.map((id, key) => (<div key={key}>
+                <TestCard temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} />
+            </div>)) : <Text>Loading</Text> }
+        </Stack>) :  (<Text>Loading..</Text>);
 };
 
 export default WeatherCardArray;
