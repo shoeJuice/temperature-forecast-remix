@@ -76,7 +76,7 @@ function DisplayContainer(props) {
         padding={30}
         cursor='default'
         color='white'
-        paddingBottom='7ex'
+        paddingY='5ex'
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
