@@ -219,7 +219,7 @@ const WeatherCardArray = (props) => {
             
             
             borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
-            borderBottom={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
+            borderBottom={(isPhoneDisplay) ? ['none'] : ['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             
             direction={{base: 'column', sm:'column', md:'row'}}
         >
