@@ -35,7 +35,7 @@ function DisplayContainer(props) {
   }
 
   const getTemp = () => {
-    fetch(`https://pro.openweathermap.org/data/2.5/onecall?lat=${props.latitude}&lon=${props.longitude}&exclude=minutely,hourly&appid=69216bc1e255a60480a846fcb5004876&units=imperial`)
+    fetch(`https://pro.openweathermap.org/data/2.5/onecall?lat=${props.latitude}&lon=${props.longitude}&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
    .then(response => response.json())
    .then(response => {
       
