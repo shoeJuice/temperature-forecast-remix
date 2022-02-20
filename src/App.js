@@ -17,8 +17,8 @@ function App() {
   const [weather, setWeather] = React.useState()
   const [city, setCity] = React.useState()
   const [location, setLocation] = React.useState()
-  const [latitude, setLatitude] = React.useState(40.71455);
-  const [longitude, setLongitude] = React.useState(-74.00712);
+  const [latitude, setLatitude] = React.useState(40.7128);
+  const [longitude, setLongitude] = React.useState(-74.0060);
   const {colorMode, toggleColorMode} = useColorMode()
   const [locationLoading, setLocationLoading] = React.useState(true)
   const[time, setTime] = React.useState()

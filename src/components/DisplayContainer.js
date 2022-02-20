@@ -39,7 +39,7 @@ function DisplayContainer(props) {
    .then(response => response.json())
    .then(response => {
       
-       setCurrentDay({"tempDay": parseInt(response.current.temp), "tempMin": parseInt(response.daily[0].temp['min']), "weatherDesc": String(response.current.weather[0].main)})
+       setCurrentDay({"tempDay": parseInt(response.daily[0].temp['max']), "tempMin": parseInt(response.daily[0].temp['min']), "weatherDesc": String(response.current.weather[0].main)})
        setNextSeven(Array.from(response.daily).slice(1, 7))
        console.log("Length is:", nextSeven)
        console.log("Main Response Test:", response.daily[0])
@@ -51,7 +51,7 @@ function DisplayContainer(props) {
 
 
   React.useEffect(() => {getTemp()
-    }, [loading])
+    }, [loading, props.longitude, props.latitude])
 
   return  (
     <div className={css`animation: ${fadeIn};
@@ -60,7 +60,7 @@ function DisplayContainer(props) {
       <Flex
         justifyContent='space-between'
         bgColor='rgba(160, 174, 192, .15)'
-        height={{base: '100vh', sm: '100vh', md:'100%', lg:'800px'}}
+        height={{base: '100vh', sm: '100vh', md:'100%', lg:'600px'}}
         width={(mQuery || isSurfaceDuo)? '100vh' : {
           base: '100vh',
           sm: '100vh',
@@ -76,6 +76,7 @@ function DisplayContainer(props) {
         padding={30}
         cursor='default'
         color='white'
+        paddingBottom='7ex'
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
