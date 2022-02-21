@@ -8,7 +8,7 @@
 import React from 'react'
 import { createApi } from 'unsplash-js'
 import { Box, Grid, Flex, ChakraProvider, useColorMode } from '@chakra-ui/react'
-import Navbar from './components/Navbar.js'
+
 import DisplayContainer from './components/DisplayContainer'
 import {keyframes} from '@emotion/react'
 import {css} from '@emotion/css'
