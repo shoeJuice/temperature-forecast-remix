@@ -7,7 +7,7 @@
 
 import React from 'react'
 import { createApi } from 'unsplash-js'
-import { Box, Grid, Flex, ChakraProvider, useColorMode } from '@chakra-ui/react'
+import { Box, Grid, Flex, ChakraProvider, useColorMode, useMediaQuery } from '@chakra-ui/react'
 
 import DisplayContainer from './components/DisplayContainer'
 import {keyframes} from '@emotion/react'
@@ -21,13 +21,17 @@ function App() {
   const [longitude, setLongitude] = React.useState(-74.0060);
   const {colorMode, toggleColorMode} = useColorMode()
   const [locationLoading, setLocationLoading] = React.useState(true)
-  const[time, setTime] = React.useState()
+  const [time, setTime] = React.useState()
 
   const [isDawn, setIsDawn] = React.useState(false)
   const [isNight, setIsNight] = React.useState(false)
   const [isEvening, setIsEvening] = React.useState(false)
   const [isMorning, setIsMorning] = React.useState(false)
   
+
+  const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
+
+
   let today = new Date();
   const initLocation = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -125,7 +129,8 @@ function App() {
         alignItems='center'
         justifyContent='center'
         height='100vh'
-        overflow='hidden'
+        overflowX='hidden'
+        overflowY={mobileLandscape ? 'auto' : 'hidden'}
       >
         <div className={styles.backgroundModule}><div className={isNight? css`
         background: url(https://source.unsplash.com/random/2400x1801/?night,moon,stars);

@@ -20,7 +20,7 @@ function DisplayContainer(props) {
   const nameRemembered = localStorage.getItem('userName') 
   const [name, setName] = React.useState(nameRemembered ? nameRemembered : '')
   const [mQuery] = useMediaQuery('(max-width: 412px)')
-  const [mobileLandscape] = useMediaQuery('screen and (orientation: landscape)')
+  const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
   const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
