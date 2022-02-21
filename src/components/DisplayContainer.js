@@ -52,7 +52,7 @@ function DisplayContainer(props) {
 
 
   React.useEffect(() => {getTemp()
-    }, [loading, props.longitude, props.latitude])
+    }, [loading, props.longitude, props.latitude, mQuery])
 
   return  (
     <div className={css`animation: ${fadeIn};
