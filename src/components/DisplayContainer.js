@@ -52,7 +52,7 @@ function DisplayContainer(props) {
 
 
   React.useEffect(() => {getTemp()
-    }, [loading, props.longitude, props.latitude, mQuery])
+    }, [loading, props.longitude, props.latitude])
 
   return  (
     <div className={css`animation: ${fadeIn};
@@ -80,7 +80,7 @@ function DisplayContainer(props) {
         color='white'
         paddingTop='1ex'
         paddingBottom='2ex'
-        overflowY={mQuery ? 'auto' : 'none'}
+        
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
