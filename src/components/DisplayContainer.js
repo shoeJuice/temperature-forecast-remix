@@ -20,6 +20,7 @@ function DisplayContainer(props) {
   const nameRemembered = localStorage.getItem('userName') 
   const [name, setName] = React.useState(nameRemembered ? nameRemembered : '')
   const [mQuery] = useMediaQuery('(max-width: 412px)')
+  const [mobileLandscape] = useMediaQuery('screen and (max-width: 540px) and (orientation: landscape)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
   const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
@@ -60,8 +61,8 @@ function DisplayContainer(props) {
       <Flex
         justifyContent='space-between'
         bgColor='rgba(160, 174, 192, .15)'
-        height={{base: '100vh', sm: '100vh', md:'100%', lg:'600px'}}
-        width={(mQuery || isSurfaceDuo)? '100vh' : {
+        height={(mQuery || isSurfaceDuo ) ? '100vh' : {base: '100vh', sm: '100vh', md:'100%', lg:'600px'}}
+        width={(mQuery || isSurfaceDuo || mobileLandscape) ? '100vw' : {
           base: '100vh',
           sm: '100vh',
           md: '100%',

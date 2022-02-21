@@ -17,6 +17,7 @@ const breakpoints = createBreakpoints({
 const TestCard = (props) => {
     const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
     const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
+    const [landscapeOrientationSDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5) and (orientation: landscape)')
     return (
         <Flex 
         textAlign={{base: 'center', sm:'left', md:'center', lg:'center'}}
@@ -27,14 +28,14 @@ const TestCard = (props) => {
         paddingX='2ex'
         paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
-        borderBottom={['none', 'none', 'none', 'none']}
+        borderBottom={props.needsDivider ? ((!(isPhoneDisplay || isSurfaceDuo )) ? ['none'] : ['1px solid white', '1px solid white', 'none', 'none']) : ['none', 'none', 'none', 'none']}
         >
             
             <Box
                 textAlign='center'
                 alignContent='center'
                 width='6ex'
-                marginX='10px'
+                
                 
             >
                 <Text fontSize={['2.3ex']} fontWeight='medium'>
@@ -48,7 +49,7 @@ const TestCard = (props) => {
             </Box>
             
             <Box
-            paddingLeft={(isPhoneDisplay || isSurfaceDuo) ? '6ex' : '0px'}
+            paddingLeft={(isPhoneDisplay || isSurfaceDuo) ? '0ex' : '0px'}
             >
                 <Text  fontSize={['16px']}>
                     {`${props.temperature}°F`}

@@ -24,8 +24,9 @@ const WeatherCardArray = (props) => {
     const [loading, setLoading] = React.useState(true);
     const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
     const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
-    
-   const setVariables = (temp, weather) => {
+    const [landscapeMode] = useMediaQuery('only screen and (orientation: landscape)')
+    const toDivide = (isPhoneDisplay || landscapeMode)
+    const setVariables = (temp, weather) => {
        setTemperature(temp)
        setWeather(weather)
    }
@@ -214,17 +215,17 @@ const WeatherCardArray = (props) => {
         return (props.sourceArray) ? (<Stack
             
             textAlign='center'
-            divider={(isPhoneDisplay || isSurfaceDuo) ? <StackDivider borderColor='white' /> : <></>}
+            divider={(isPhoneDisplay || isSurfaceDuo) ? <></> : <></>}
             
             
             
             borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             borderBottom={(isPhoneDisplay) ? ['none'] : ['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             
-            direction={{base: 'column', sm:'column', md:'row'}}
+            direction={(isPhoneDisplay || landscapeMode) ? 'column' : {base: 'column', sm:'column', md:'row'}}
         >
-            { (Array.isArray(fList)) ? fList.map((id, key) => (<div key={key}>
-                <TestCard temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} />
+            { (Array.isArray(fList)) ? fList.map((id, key) => ((key == 5) ? (<div key={key}><TestCard needsDivider={false} temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} /></div>) : <div key={key}>
+                <TestCard needsDivider={true} temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} />
             </div>)) : <Text>Loading</Text> }
         </Stack>) :  (<Text>Loading..</Text>);
 };
