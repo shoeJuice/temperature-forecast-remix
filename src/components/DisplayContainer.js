@@ -20,7 +20,7 @@ function DisplayContainer(props) {
   const nameRemembered = localStorage.getItem('userName') 
   const [name, setName] = React.useState(nameRemembered ? nameRemembered : '')
   const [mQuery] = useMediaQuery('(max-width: 412px)')
-  const [mobileLandscape] = useMediaQuery('screen and (max-width: 540px) and (orientation: landscape)')
+  const [mobileLandscape] = useMediaQuery('screen and (orientation: landscape)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
   const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
@@ -62,7 +62,7 @@ function DisplayContainer(props) {
         justifyContent='space-between'
         bgColor='rgba(160, 174, 192, .15)'
         height={(mQuery || isSurfaceDuo ) ? '100vh' : {base: '100vh', sm: '100vh', md:'100%', lg:'600px'}}
-        width={(mQuery || isSurfaceDuo || mobileLandscape) ? '100vw' : {
+        width={(mQuery || isSurfaceDuo ) ? '100vw' : {
           base: '100vh',
           sm: '100vh',
           md: '100%',
@@ -71,13 +71,16 @@ function DisplayContainer(props) {
         justifyContent='center'
         alignItems='center'
         borderRadius={props.borderRadius? props.borderRadius : 6}
+        background='rgba(0, 0, 0, 0.145)'
         backdropFilter={'auto'}
         backdropBlur='16px'
         flexDirection='column'
-        padding={30}
+        paddingX='2ex'
         cursor='default'
         color='white'
-        paddingY='5ex'
+        paddingTop='1ex'
+        paddingBottom='2ex'
+        overflowY={mQuery ? 'auto' : 'none'}
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>

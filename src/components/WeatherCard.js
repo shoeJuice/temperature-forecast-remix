@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Text, Icon, Flex} from '@chakra-ui/react'
+import {Box, Text, Icon, Flex, useMediaQuery} from '@chakra-ui/react'
 import {BsSun, BsMoonFill, BsCloudSnow, BsClouds, BsCloudRain, BsCloudFog} from 'react-icons/bs'
 import {RiMistLine} from 'react-icons/ri'
 
@@ -19,6 +19,11 @@ const WeatherCard = (props) => {
     const [loading, setLoading] = React.useState(props.loading);
     const [low, setLow] = React.useState('Low Here');
 
+    const [mQuery] = useMediaQuery('(max-width: 412px)')
+    const [mobileLandscape] = useMediaQuery('screen and (orientation: landscape)')
+
+    const fSize = (mobileLandscape ? '3ex' : '3.8ex')
+    const fSizeMinor = (mobileLandscape ? '2ex' : '3ex')
    const setVariables = (high, weather, min) => {
        setTemperature(high)
        setWeather(weather)
@@ -60,13 +65,13 @@ const WeatherCard = (props) => {
                 paddingBottom='1ex'
             >
                 <AdaptiveIcon boxSize={10} weather={props.weatherDesc}  />
-                <Text fontSize={['16px', '18px', '40px', '48px']} >
+                <Text fontSize={mobileLandscape ? fSize : ['16px', '18px', '40px', '48px']} >
                     {`${props.weatherDesc}`}
                 </Text>
-                <Text fontWeight={10}  fontSize={['16px', '18px', '40px', '30px']}>
+                <Text fontWeight={10}  fontSize={mobileLandscape ? fSizeMinor : ['16px', '18px', '40px', '30px']}>
                     {`${props.tempMax}°F`}
                 </Text>
-                <Text color='#F7FAFC' fontWeight={10} fontSize={['16px', '18px', '40px', '30px']}>
+                <Text color='#F7FAFC' fontWeight={10} fontSize={mobileLandscape ? fSizeMinor : ['16px', '18px', '40px', '30px']}>
                     {`${props.tempMin}°F`}
                 </Text>
             </Flex>
