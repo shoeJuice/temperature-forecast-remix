@@ -24,8 +24,8 @@ const WeatherCardArray = (props) => {
     const [loading, setLoading] = React.useState(true);
     const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
     const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
-    const [landscapeMode] = useMediaQuery('only screen and (orientation: landscape)')
-    const toDivide = (isPhoneDisplay || landscapeMode)
+    const [landscapeMode] = useMediaQuery('(orientation: landscape) and (max-width: 400px)')
+    
     const setVariables = (temp, weather) => {
        setTemperature(temp)
        setWeather(weather)
