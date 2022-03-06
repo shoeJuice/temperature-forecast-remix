@@ -30,7 +30,7 @@ const Settings = (props) => {
         justifyContent={'flex-end'}
         width={[270, 400, 600, 700]}
     >
-        {(isPhoneDisplay || isSurfaceDuo) ? <Button colorScheme='white' variant='link' onClick={onOpen}>Settings</Button> : <IconButton variant='outline' onClick={onOpen} borderWidth={2} borderColor='white' icon={<FaCog />}/>}
+        {(isPhoneDisplay || isSurfaceDuo) ? <Button colorScheme='white' variant='link' onClick={onOpen}>Settings</Button> : <IconButton marginTop='1ex' variant='outline' onClick={onOpen} borderWidth={2} borderColor='white' icon={<FaCog />}/>}
         <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

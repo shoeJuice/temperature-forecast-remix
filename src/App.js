@@ -7,8 +7,8 @@
 
 import React from 'react'
 import { createApi } from 'unsplash-js'
-import { Box, Grid, Flex, ChakraProvider, useColorMode } from '@chakra-ui/react'
-import Navbar from './components/Navbar.js'
+import { Box, Grid, Flex, ChakraProvider, useColorMode, useMediaQuery } from '@chakra-ui/react'
+
 import DisplayContainer from './components/DisplayContainer'
 import {keyframes} from '@emotion/react'
 import {css} from '@emotion/css'
@@ -17,17 +17,21 @@ function App() {
   const [weather, setWeather] = React.useState()
   const [city, setCity] = React.useState()
   const [location, setLocation] = React.useState()
-  const [latitude, setLatitude] = React.useState(40.71455);
-  const [longitude, setLongitude] = React.useState(-74.00712);
+  const [latitude, setLatitude] = React.useState(40.7128);
+  const [longitude, setLongitude] = React.useState(-74.0060);
   const {colorMode, toggleColorMode} = useColorMode()
   const [locationLoading, setLocationLoading] = React.useState(true)
-  const[time, setTime] = React.useState()
+  const [time, setTime] = React.useState()
 
   const [isDawn, setIsDawn] = React.useState(false)
   const [isNight, setIsNight] = React.useState(false)
   const [isEvening, setIsEvening] = React.useState(false)
   const [isMorning, setIsMorning] = React.useState(false)
   
+
+  const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
+
+
   let today = new Date();
   const initLocation = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -97,7 +101,7 @@ function App() {
     handleTime(time)
 
 
-    fetch(`https://pro.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=69216bc1e255a60480a846fcb5004876&units=imperial`)
+    fetch(`https://pro.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
         .then(response => response.json())
         .then(response => setVariables(response.weather[0]['main'], response.name))
     
@@ -125,7 +129,8 @@ function App() {
         alignItems='center'
         justifyContent='center'
         height='100vh'
-        overflow='hidden'
+        overflowX='hidden'
+        overflowY={mobileLandscape ? 'auto' : 'hidden'}
       >
         <div className={styles.backgroundModule}><div className={isNight? css`
         background: url(https://source.unsplash.com/random/2400x1801/?night,moon,stars);

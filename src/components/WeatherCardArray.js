@@ -24,8 +24,9 @@ const WeatherCardArray = (props) => {
     const [loading, setLoading] = React.useState(true);
     const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
     const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
+    const [landscapeMode] = useMediaQuery('(orientation: landscape) and (max-width: 400px)')
     
-   const setVariables = (temp, weather) => {
+    const setVariables = (temp, weather) => {
        setTemperature(temp)
        setWeather(weather)
    }
@@ -152,9 +153,10 @@ const WeatherCardArray = (props) => {
     }
 
    const numberToDay = (dtSeconds) => {
+        let milliseconds = dtSeconds * 1000
         let date = unixTimeToHumanReadable(dtSeconds)
-        let dateObject = new Date(date)
-        
+        let dateObject = new Date(milliseconds)
+        console.log("Day of week: ", dateObject.getDay())
         let dayOfWeek = ''
         switch(dateObject.getDay()){
             case 0:
@@ -213,17 +215,17 @@ const WeatherCardArray = (props) => {
         return (props.sourceArray) ? (<Stack
             
             textAlign='center'
-            divider={(isPhoneDisplay || isSurfaceDuo) ? <StackDivider borderColor='white' /> : <></>}
+            divider={(isPhoneDisplay || isSurfaceDuo) ? <></> : <></>}
             
             
             
             borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
-            borderBottom={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
+            borderBottom={(isPhoneDisplay) ? ['none'] : ['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             
-            direction={{base: 'column', sm:'column', md:'row'}}
+            direction={(isPhoneDisplay) ? 'column' : {base: 'column', sm:'column', md:'row'}}
         >
-            { (Array.isArray(fList)) ? fList.map((id, key) => (<div key={key}>
-                <TestCard temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} />
+            { (Array.isArray(fList)) ? fList.map((id, key) => ((key == 5) ? (<div key={key}><TestCard needsDivider={false} temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} /></div>) : <div key={key}>
+                <TestCard needsDivider={true} temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} />
             </div>)) : <Text>Loading</Text> }
         </Stack>) :  (<Text>Loading..</Text>);
 };

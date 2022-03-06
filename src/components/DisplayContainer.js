@@ -18,8 +18,9 @@ function DisplayContainer(props) {
         backdrop-filter: blur(16px);}`
   
   const nameRemembered = localStorage.getItem('userName') 
-  const [name, setName] = React.useState(nameRemembered ? nameRemembered : 'null')
+  const [name, setName] = React.useState(nameRemembered ? nameRemembered : '')
   const [mQuery] = useMediaQuery('(max-width: 412px)')
+  const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
   const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
@@ -35,11 +36,11 @@ function DisplayContainer(props) {
   }
 
   const getTemp = () => {
-    fetch(`https://pro.openweathermap.org/data/2.5/onecall?lat=${props.latitude}&lon=${props.longitude}&exclude=minutely,hourly&appid=69216bc1e255a60480a846fcb5004876&units=imperial`)
+    fetch(`https://pro.openweathermap.org/data/2.5/onecall?lat=${props.latitude}&lon=${props.longitude}&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
    .then(response => response.json())
    .then(response => {
       
-       setCurrentDay({"tempDay": parseInt(response.current.temp), "tempMin": parseInt(response.daily[0].temp['min']), "weatherDesc": String(response.current.weather[0].main)})
+       setCurrentDay({"tempDay": parseInt(response.daily[0].temp['max']), "tempMin": parseInt(response.daily[0].temp['min']), "weatherDesc": String(response.current.weather[0].main)})
        setNextSeven(Array.from(response.daily).slice(1, 7))
        console.log("Length is:", nextSeven)
        console.log("Main Response Test:", response.daily[0])
@@ -51,7 +52,7 @@ function DisplayContainer(props) {
 
 
   React.useEffect(() => {getTemp()
-    }, [loading])
+    }, [loading, props.longitude, props.latitude])
 
   return  (
     <div className={css`animation: ${fadeIn};
@@ -69,11 +70,16 @@ function DisplayContainer(props) {
       }}
         alignItems='center'
         borderRadius={props.borderRadius? props.borderRadius : 6}
+        background='rgba(0, 0, 0, 0.145)'
         backdropFilter={'auto'}
         backdropBlur='16px'
         flexDirection='column'
+        paddingX='2ex'
         cursor='default'
         color='white'
+        paddingTop='1ex'
+        paddingBottom='2ex'
+        
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
