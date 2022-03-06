@@ -81,7 +81,7 @@ function DisplayContainer(props) {
             <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempMin={currentDay['tempMin']} />
           </Box>
           <Box marginTop='12ex'>
-            <WeatherCardArray sourceArray={nextSeven}  />
+            <WeatherCardArray sourceArray={nextSeven} isLandscapeMode={mobileLandscape} />
           </Box>
         </Flex>
       </Flex>
