@@ -17,13 +17,13 @@ const breakpoints = createBreakpoints({
 const TestCard = (props) => {
     const [isPhoneDisplay] = useMediaQuery('(max-width: 420px)') 
     const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
-    const [landscapeOrientationSDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5) and (orientation: landscape)')
+    const [landscapeOrientationSDuo] = useMediaQuery('only screen and (orientation: landscape)')
     return (
         <Flex 
         textAlign={{base: 'center', sm:'left', md:'center', lg:'center'}}
         
         justifyContent='space-between'
-        flexDirection={['row', 'row', 'column']}
+        flexDirection={[(landscapeOrientationSDuo ? 'column' : 'row'), 'row', 'column']}
         alignItems='center'
         paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
