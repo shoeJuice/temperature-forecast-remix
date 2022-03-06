@@ -11,8 +11,8 @@ const GreetingCard = (props) => {
 
   const [mQuery] = useMediaQuery('(max-width: 412px)')
   const [mobileLandscape] = useMediaQuery('screen and (orientation: landscape)')
-  const fSize = (mobileLandscape ? '3ex' : '3.8ex')
-  const fSizeMinor = (mobileLandscape ? '2ex' : '3ex')
+  const fSize = (mobileLandscape ? ['2.5ex', '2.8ex', '3ex', '3.2ex'] : '3ex')
+  const fSizeMinor = (mobileLandscape ? ['1.8ex', '2ex', '2.2ex', '3ex'] : '2.3ex')
   
   React.useEffect(() => {
 
@@ -28,13 +28,12 @@ const GreetingCard = (props) => {
             textAlign="center"
         >
             <Text
-                fontSize={mobileLandscape ? fSize : [16, 18, 40, 50]}
+                fontSize={fSize}
                 fontWeight='medium'
             >{name ? `Hello ${name}` : "Hello"}</Text>
-            <Text marginBottom={[1, 2, 3, 4]} fontSize={mobileLandscape ? fSizeMinor : [16, 18, 22, 25]} fontWeight='thin'>Today is {day} </Text>
+            <Text marginBottom={[1, 2, 3, 4]} fontSize={fSizeMinor} fontWeight='thin'>Today is {day} </Text>
             <Text
                 fontSize={[16, 22, 32, 35]}
-                
             >{props.city}</Text>
         </Box>
       );
