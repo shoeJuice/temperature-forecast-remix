@@ -15,7 +15,7 @@ const WeatherCard = (props) => {
     const [mobileLandscape] = useMediaQuery('screen and (orientation: landscape)')
 
     const fSize = (mobileLandscape ? '3ex' : '3.8ex')
-    const fSizeMinor = (mobileLandscape ? '2ex' : '3ex')
+    const fSizeMinor = (mobileLandscape ? '3ex' : '5ex')
    const setVariables = (high, weather, min) => {
        setTemperature(high)
        setWeather(weather)

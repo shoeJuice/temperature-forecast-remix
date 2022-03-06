@@ -28,7 +28,7 @@ const Settings = (props) => {
   return  (
     <Flex
         justifyContent={'flex-end'}
-        width={[270, 400, 600, 700]}
+        width={[270, 400, 600, 650]}
     >
         {(isPhoneDisplay || isSurfaceDuo) ? <Button colorScheme='white' variant='link' onClick={onOpen}>Settings</Button> : <IconButton marginTop='1ex' variant='outline' onClick={onOpen} borderWidth={2} borderColor='white' icon={<FaCog />}/>}
         <Modal isOpen={isOpen} onClose={onClose}>

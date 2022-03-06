@@ -54,20 +54,46 @@ function DisplayContainer(props) {
   React.useEffect(() => {getTemp()
     }, [loading, props.longitude, props.latitude])
 
-  return  (
+  return mobileLandscape? (<>
+    <div className={css`animation: ${fadeIn};
+    animation-duration: 3s;
+    animation-timing-function: linear;`}>
+      <Flex
+        flexDirection="column"
+        cursor='default'
+        color='white'
+        bgColor='rgba(160, 174, 192, .15)'
+        backdropFilter={'auto'}
+        backdropBlur='16px'
+        height='100vh'
+        width='100vw'
+        alignItems='center'
+        justifyContent='center'
+      >
+        <Flex>
+          <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
+        </Flex>
+        <Flex
+          flexDirection='row'
+        >
+          <Box>
+            <GreetingCard name={name} city={props.city}/>
+            <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempMin={currentDay['tempMin']} />
+          </Box>
+          <Box marginTop='12ex'>
+            <WeatherCardArray sourceArray={nextSeven}  />
+          </Box>
+        </Flex>
+      </Flex>
+    </div>
+  
+  </>) : (
     <div className={css`animation: ${fadeIn};
     animation-duration: 3s;
     animation-timing-function: linear;`}>
       <Flex
         justifyContent='center'
         bgColor='rgba(160, 174, 192, .15)'
-        height={{base: '100vh', sm: '100vh', md:'100%', lg:'650px'}}
-        width={(mQuery || isSurfaceDuo)? '100vh' : {
-          base: '100vh',
-          sm: '100vh',
-          md: '100%',
-          lg: '750px'
-      }}
         alignItems='center'
         borderRadius={props.borderRadius? props.borderRadius : 6}
         background='rgba(0, 0, 0, 0.145)'
@@ -79,13 +105,11 @@ function DisplayContainer(props) {
         color='white'
         paddingTop='1ex'
         paddingBottom='2ex'
-        
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
           <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempMin={currentDay['tempMin']} />
-         <WeatherCardArray sourceArray={nextSeven}  />
-          
+          <WeatherCardArray sourceArray={nextSeven}  />
       </Flex>
   </div>
   );
