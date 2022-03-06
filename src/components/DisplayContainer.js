@@ -58,22 +58,20 @@ function DisplayContainer(props) {
     animation-duration: 3s;
     animation-timing-function: linear;`}>
       <Flex
-        justifyContent='space-between'
+        justifyContent='center'
         bgColor='rgba(160, 174, 192, .15)'
-        height={{base: '100vh', sm: '100vh', md:'100%', lg:'800px'}}
+        height={{base: '100vh', sm: '100vh', md:'100%', lg:'650px'}}
         width={(mQuery || isSurfaceDuo)? '100vh' : {
           base: '100vh',
           sm: '100vh',
           md: '100%',
           lg: '750px'
       }}
-        justifyContent='center'
         alignItems='center'
         borderRadius={props.borderRadius? props.borderRadius : 6}
         backdropFilter={'auto'}
         backdropBlur='16px'
         flexDirection='column'
-        padding={30}
         cursor='default'
         color='white'
       >

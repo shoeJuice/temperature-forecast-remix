@@ -1,24 +1,16 @@
 import React from 'react';
 import {Box, Text, Icon, Flex} from '@chakra-ui/react'
-import {BsSun, BsMoonFill, BsCloudSnow, BsClouds, BsCloudRain, BsCloudFog} from 'react-icons/bs'
-import {RiMistLine} from 'react-icons/ri'
+import {AdaptiveIcon} from './AdaptiveIcon.js'
 
-const AdaptiveIcon = ( props ) => {
-   
-    const defBoxSize = 65
-    
-    return <>
-            {(String(props.weather).includes("Snow")) ? (<Icon as={BsCloudSnow} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : ((String(props.weather).includes("Clouds") ? (<Icon as={BsClouds} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : (String(props.weather).includes("Rain") ? (<Icon as={BsCloudRain} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : ((String(props.weather).includes("Clear")) ? (<Icon as={BsSun} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : ((String(props.weather).includes("Fog")) ? (<Icon as={BsCloudFog} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : (String(props.weather).includes("Mist")) ? (<Icon as={RiMistLine} display={props.display} boxSize={props.boxSize? props.boxSize : defBoxSize} marginBottom={props.marginBottom} />) : <></>)))       ))}
-        </>
-
-}
 
 const WeatherCard = (props) => {
     const [temperature, setTemperature] = React.useState('Temp Here');
     const [weather, setWeather] = React.useState('Weather Here');
     const [loading, setLoading] = React.useState(props.loading);
     const [low, setLow] = React.useState('Low Here');
+    const [detailedMode, setDetailedMode] = React.useState(false);
 
+    
    const setVariables = (high, weather, min) => {
        setTemperature(high)
        setWeather(weather)

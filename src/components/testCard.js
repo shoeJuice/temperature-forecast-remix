@@ -1,5 +1,5 @@
 import React from 'react';
-import { AdaptiveIcon } from './WeatherCard';
+import { AdaptiveIcon } from './AdaptiveIcon';
 import {Box, Text, Flex, Spacer, useMediaQuery} from '@chakra-ui/react'
 import {BsSun, BsMoonFill} from 'react-icons/bs'
 
