@@ -25,7 +25,6 @@ const TestCard = (props) => {
         justifyContent='space-between'
         flexDirection={['row', 'row', 'column']}
         alignItems='center'
-        paddingX='2ex'
         paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
         borderBottom={props.needsDivider ? ((!(isPhoneDisplay || isSurfaceDuo )) ? ['none'] : ['1px solid white', '1px solid white', 'none', 'none']) : ['none', 'none', 'none', 'none']}
