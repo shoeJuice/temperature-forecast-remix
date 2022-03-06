@@ -129,29 +129,30 @@ function App() {
         alignItems='center'
         justifyContent='center'
         height='100vh'
+        width='100vw'
         overflowX='hidden'
         overflowY={mobileLandscape ? 'auto' : 'hidden'}
       >
         <div className={styles.backgroundModule}><div className={isNight? css`
         background: url(https://source.unsplash.com/random/2400x1801/?night,moon,stars);
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         ` : isDawn? css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather},dawn,sunrise);
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         ` : isMorning? css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather},morning);
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         ` : isEvening? css`
         background: url(https://source.unsplash.com/random/2400x1801/?${weather},evening,sunset);
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         ` : css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather});
         height: 100vh;
-        width: 100%;
+        width: 100vw;
         `}></div></div>
         <DisplayContainer latitude={latitude} longitude={longitude} isDark={isNight} city={city}/>
       </Flex>
