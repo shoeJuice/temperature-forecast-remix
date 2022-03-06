@@ -23,7 +23,7 @@ const TestCard = (props) => {
         textAlign={{base: 'center', sm:'left', md:'center', lg:'center'}}
         
         justifyContent='space-between'
-        flexDirection={['row', 'row', 'column']}
+        flexDirection={['column', 'row', 'column']}
         alignItems='center'
         paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
