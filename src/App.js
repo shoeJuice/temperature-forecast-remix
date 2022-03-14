@@ -129,9 +129,9 @@ function App() {
       <Flex
         alignItems='center'
         justifyContent='center'
-        overflowX='hidden'
-        overflowY='hidden'
-        paddingTop={mobileLandscape ? '0ex' : '2ex'}
+        overflow='hidden'
+        height='100vh'
+        
         paddingLeft='env(safe-area-inset-left)'
         paddingRight='env(safe-area-inset-right)'
         
