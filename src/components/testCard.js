@@ -27,7 +27,7 @@ const TestCard = (props) => {
         alignItems='center'
         paddingY='0.6ex'
         borderTop={['none', 'none', 'none', 'none']}
-        borderBottom={props.needsDivider ? ((!(isPhoneDisplay || isSurfaceDuo )) ? ['none'] : ['1px solid white', '1px solid white', 'none', 'none']) : ['none', 'none', 'none', 'none']}
+        borderBottom={props.needsDivider ? ('none') : 'none'}
         >
             
             <Box

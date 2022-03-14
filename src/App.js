@@ -13,6 +13,7 @@ import DisplayContainer from './components/DisplayContainer'
 import {keyframes} from '@emotion/react'
 import {css} from '@emotion/css'
 import styles from './styles/background.module.css'
+
 function App() {
   const [weather, setWeather] = React.useState()
   const [city, setCity] = React.useState()
@@ -128,32 +129,35 @@ function App() {
       <Flex
         alignItems='center'
         justifyContent='center'
-        height='100vh'
-        width='100vw'
         overflowX='hidden'
-        overflowY={mobileLandscape ? 'auto' : 'hidden'}
+        overflowY='hidden'
+        paddingTop={mobileLandscape ? '0ex' : '2ex'}
+        paddingLeft='env(safe-area-inset-left)'
+        paddingRight='env(safe-area-inset-right)'
+        
       >
         <div className={styles.backgroundModule}><div className={isNight? css`
         background: url(https://source.unsplash.com/random/2400x1801/?night,moon,stars);
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
         ` : isDawn? css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather},dawn,sunrise);
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
         ` : isMorning? css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather},morning);
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
         ` : isEvening? css`
         background: url(https://source.unsplash.com/random/2400x1801/?${weather},evening,sunset);
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
         ` : css`
         background: url(https://source.unsplash.com/random/2400x1801/?nature,${weather});
-        height: 100vh;
         width: 100vw;
-        `}></div></div>
+        height: 100vh;
+        `}></div>
+        </div>
         <DisplayContainer latitude={latitude} longitude={longitude} isDark={isNight} city={city}/>
       </Flex>
     </ChakraProvider>

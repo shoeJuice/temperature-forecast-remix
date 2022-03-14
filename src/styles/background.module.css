@@ -21,8 +21,6 @@
 
 .backgroundModule{
    /* background: url(https://source.unsplash.com/random/2400x1801/?nature,snow); */
-    height: 100vh;
-    width: 100vw;
     position: absolute;
     animation: blurIn;
     animation-duration: 3s;
@@ -37,8 +35,25 @@
 .backgroundModule::before{
     content: "";
     
-    position: absolute;
-    width: 100%;
+    
+    width: 100vw;
     height: 100vh;
     
+}
+
+html{
+    padding: env(safe-area-inset);
+}
+
+@media screen and (orientation: landscape){
+    .backgroundModule{
+        /* background: url(https://source.unsplash.com/random/2400x1801/?nature,snow); */
+         height: auto;
+         width: auto;
+         animation: blurIn;
+         animation-duration: 3s;
+         animation-timing-function: linear;
+
+         
+     }
 }
