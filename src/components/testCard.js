@@ -26,6 +26,7 @@ const TestCard = (props) => {
         flexDirection={[(landscapeOrientationSDuo ? 'column' : 'row'), 'row', 'column']}
         alignItems='center'
         paddingY='0.6ex'
+        paddingX='0.8ex'
         borderTop={['none', 'none', 'none', 'none']}
         borderBottom={props.needsDivider ? ('none') : 'none'}
         >
@@ -34,8 +35,6 @@ const TestCard = (props) => {
                 textAlign='center'
                 alignContent='center'
                 width='6ex'
-                
-                
             >
                 <Text fontSize={['2.3ex']} fontWeight='medium'>
                     {`${props.day}`}

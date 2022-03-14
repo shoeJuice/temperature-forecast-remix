@@ -218,6 +218,7 @@ const WeatherCardArray = (props) => {
             divider={(isPhoneDisplay || isSurfaceDuo) ? <></> : <></>}
             borderTop={['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
             borderBottom={(isPhoneDisplay) ? ['none'] : ['1px solid white', '1px solid white', '1px solid white', '1px solid white']}
+            
             direction={(isPhoneDisplay) ? 'column' : ( (props.isLandscapeMode) ? 'row' : {base: 'column', sm:'column', md:'row'})}
         >
             { (Array.isArray(fList)) ? fList.map((id, key) => ((key == 5) ? (<div key={key}><TestCard needsDivider={false} temperature={parseInt(id['temp'].day)} weather={id['weather'][0].main}  min={parseInt(id['temp'].min)} day={numberToDay(id['dt'])} /></div>) : 

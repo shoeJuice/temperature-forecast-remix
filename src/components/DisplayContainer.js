@@ -70,9 +70,9 @@ function DisplayContainer(props) {
         alignItems='center'
         justifyContent='center'
       >
-        <Flex>
+        <Box>
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
-        </Flex>
+        </Box>
         <Flex
           flexDirection='row'
         >
@@ -100,7 +100,7 @@ function DisplayContainer(props) {
         backdropFilter={'auto'}
         backdropBlur='16px'
         flexDirection='column'
-        paddingX='2ex'
+        paddingX='1.5ex'
         cursor='default'
         color='white'
         paddingTop='1ex'
