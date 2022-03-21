@@ -98,14 +98,14 @@ function App() {
 
   React.useEffect(() => {
     initLocation()
-    
+    handleTime()
     fetch(`https://pro.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
         .then(response => response.json())
         .then(response => setVariables(response.weather[0]['main'], response.name))
     
     console.log("Weather:", weather)
     
-  }, [weather, locationLoading, location])
+  }, [weather, locationLoading])
 
   
   //TODO
