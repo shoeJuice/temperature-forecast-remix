@@ -33,7 +33,7 @@ function App() {
   const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
 
 
-  let today = new Date();
+  var today = new Date();
   const initLocation = () => {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
@@ -57,7 +57,7 @@ function App() {
     setCity(city)
   }
 
-  const handleTime = (time) => {
+  const switchTime = (time) => {
     if(time > 20 && time < 25 || time > 0 && time < 4){
       setIsNight(true)
       setIsDawn(false)
@@ -90,25 +90,23 @@ function App() {
     }
   }
   
+  const handleTime = () => {
+    let t = today.getHours();
+    setTime(t)
+    switchTime(t)
+  }
+
   React.useEffect(() => {
     initLocation()
-    if (!navigator.geolocation) {
-      console.error(`Your browser doesn't support Geolocation`);
-    }
     
-    let t = today.getHours();
-    console.log('Time:', t)
-    setTime(t)
-    handleTime(time)
-
-
     fetch(`https://pro.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
         .then(response => response.json())
         .then(response => setVariables(response.weather[0]['main'], response.name))
     
     console.log("Weather:", weather)
-  }, [weather, locationLoading])
+  }, [weather, locationLoading, location])
 
+  
   //TODO
   // TO be frank, there's too many API calls per render, this makes the SPA incredibly exhaustive and scalability isn't even on the table.
   // There's 3 API calls per render
