@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Text, Icon, Flex, useMediaQuery} from '@chakra-ui/react'
+import {Box, Text, Icon, Flex, useMediaQuery, HStack} from '@chakra-ui/react'
 import {AdaptiveIcon} from './AdaptiveIcon.js'
 
 
@@ -60,12 +60,17 @@ const WeatherCard = (props) => {
                 <Text fontSize={mobileLandscape ? fSize : ['16px', '18px', '40px', '48px']} >
                     {`${props.weatherDesc}`}
                 </Text>
-                <Text fontWeight={10}  fontSize={mobileLandscape ? fSizeMinor : ['16px', '18px', '40px', '30px']}>
-                    {`${props.tempMax}°F`}
+                <Text fontWeight={10}  fontSize={mobileLandscape ? fSizeMinor : ['14px', '16px', '40px', '30px']}>
+                        {`${props.tempCurrent}°F`}
                 </Text>
-                <Text color='#F7FAFC' fontWeight={10} fontSize={mobileLandscape ? fSizeMinor : ['16px', '18px', '40px', '30px']}>
-                    {`${props.tempMin}°F`}
-                </Text>
+                <HStack>
+                    <Text fontWeight={10}  fontSize={mobileLandscape ? fSizeMinor : ['14px', '16px', '40px', '30px']}>
+                        {`High: ${props.tempMax}°F`}
+                    </Text>
+                    <Text color='#F7FAFC' fontWeight={10} fontSize={mobileLandscape ? fSizeMinor : ['14px', '16px', '40px', '30px']}>
+                        {`Low: ${props.tempMin}°F`}
+                    </Text>
+                </HStack>
             </Flex>
         </Box>
         )

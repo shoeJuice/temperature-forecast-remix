@@ -23,7 +23,7 @@ function DisplayContainer(props) {
   const [mobileLandscape] = useMediaQuery('screen and (max-height: 420px) and (orientation: landscape)')
   const [isSurfaceDuo] = useMediaQuery('only screen and (-webkit-min-device-pixel-ratio: 2.5)')
   const [responseData, setResponseData] = React.useState()
-  const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
+  const [currentDay, setCurrentDay] = React.useState({"tempDay": 'undef', "tempCurrent": 'undef', "tempMin": 'undef', "weatherDesc": 'undef'})
   const [nextSeven, setNextSeven] = React.useState()
   const [loading, setLoading] = React.useState(true)
   const handleName = (value) => {
@@ -39,17 +39,21 @@ function DisplayContainer(props) {
     fetch(`https://pro.openweathermap.org/data/2.5/onecall?lat=${props.latitude}&lon=${props.longitude}&exclude=minutely,hourly&appid=${process.env.REACT_APP_API_KEY}&units=imperial`)
    .then(response => response.json())
    .then(response => {
-      
-       setCurrentDay({"tempDay": parseInt(response.daily[0].temp['max']), "tempMin": parseInt(response.daily[0].temp['min']), "weatherDesc": String(response.current.weather[0].main)})
+       console.log(response)
+       setCurrentDay(
+         {"tempDay": parseInt(response.daily[0].temp['max']), 
+         "tempCurrent": parseInt(response.current.temp), 
+         "tempMin": parseInt(response.daily[0].temp['min']), 
+         "weatherDesc": String(response.current.weather[0].main)}
+         )
        setNextSeven(Array.from(response.daily).slice(1, 7))
        console.log("Length is:", nextSeven)
-       console.log("Main Response Test:", response.daily[0])
+       console.log("Main Response Test:", currentDay)
        setLoading(false)
    })
    
    
 }
-
 
   React.useEffect(() => {getTemp()
     }, [loading, props.longitude, props.latitude])
@@ -78,7 +82,7 @@ function DisplayContainer(props) {
         >
           <Box>
             <GreetingCard name={name} city={props.city}/>
-            <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempMin={currentDay['tempMin']} />
+            <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempCurrent={currentDay['tempCurrent']} tempMin={currentDay['tempMin']} />
           </Box>
           <Box marginTop='12ex'>
             <WeatherCardArray sourceArray={nextSeven} isLandscapeMode={mobileLandscape} />
@@ -108,7 +112,7 @@ function DisplayContainer(props) {
       >
           <Settings isDark={props.isDark} onChangeName={(e) => {handleName(e.target.value)}} />
           <GreetingCard name={name} city={props.city}/>
-          <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempMin={currentDay['tempMin']} />
+          <WeatherCard weatherDesc={currentDay['weatherDesc']} tempMax={currentDay['tempDay']} tempCurrent={currentDay['tempCurrent']} tempMin={currentDay['tempMin']} />
           <WeatherCardArray sourceArray={nextSeven}  />
       </Flex>
   </div>
